@@ -1,0 +1,56 @@
+nginx:
+  build: docker/nginx
+  ports:
+    - "80:80"
+    - "443:443"
+  links:
+    - stash
+    - jira
+    - confluence
+    - crowd
+
+stash:
+  build: docker/stash
+  ports:
+    - "7990:7990" # no cache
+  links:
+    - database
+  volumes:
+    - stash-home:/opt/stash-home
+
+jira:
+  build: docker/jira
+  ports:
+    - "8080:8080" # no cache
+  links:
+    - database
+  volumes:
+    - jira-home:/opt/jira-home
+
+confluence:
+  build: docker/confluence
+  ports:
+    - "8090:8090" # no cache
+  links:
+    - database
+  volumes:
+    - confluence-home:/opt/confluence-home
+
+crowd:
+  build: docker/crowd
+  ports:
+    - "8095:8095" # no cache
+  links:
+    - database
+  volumes:
+    - crowd-home:/opt/crowd-home
+
+database:
+  build: docker/postgres
+  volumes_from:
+    - persistent
+
+persistent:
+  image: busybox
+  volumes:
+    - /var/lib/postgresql/data
