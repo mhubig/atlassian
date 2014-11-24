@@ -1,6 +1,6 @@
 FROM dockerfile/java:oracle-java7
 
-ENV CONFLUENCE_VERSION 5.6.4
+ENV CONFLUENCE_VERSION 5.4.3
 ENV CONFLUENCE_HOME /opt/confluence-home
 
 RUN useradd --create-home --home-dir /opt/confluence \
