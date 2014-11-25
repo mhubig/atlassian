@@ -8,6 +8,7 @@ RUN mkdir /opt/jira-home && chown -R jira:jira /opt/jira-home
 RUN wget -O - \
       http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-${JIRA_VERSION}.tar.gz \
       | tar xzf - --strip=1 -C /opt/jira \
+    && perl -i -p -e 's/^JVM_SUPPORT/#JVM_SUPPORT/' /opt/jira/bin/setenv.sh \
     && chown -R jira:jira /opt/jira
 
 WORKDIR /opt/jira
