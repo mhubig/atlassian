@@ -9,7 +9,9 @@ gosu postgres postgres --single <<- EOSQL
   GRANT ALL PRIVILEGES ON DATABASE crowd to crowd;
   GRANT ALL PRIVILEGES ON DATABASE crowdid to crowd;
 EOSQL
+echo ""
+
 { echo; echo "host crowd crowd 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
 { echo; echo "host crowdid crowd 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
-echo ""
+
 echo "******CROWD & CROWDID DATABASE CREATED******"

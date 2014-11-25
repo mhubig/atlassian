@@ -6,6 +6,8 @@ gosu postgres postgres --single <<- EOSQL
    CREATE USER stash;
    GRANT ALL PRIVILEGES ON DATABASE stash to stash;
 EOSQL
-{ echo; echo "host stash stash 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
 echo ""
+
+{ echo; echo "host stash stash 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
+
 echo "******STASH DATABASE CREATED******"

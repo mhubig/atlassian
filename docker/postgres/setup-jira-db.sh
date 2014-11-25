@@ -6,6 +6,8 @@ gosu postgres postgres --single <<- EOSQL
    CREATE USER jira;
    GRANT ALL PRIVILEGES ON DATABASE jira to jira;
 EOSQL
-{ echo; echo "host jira jira 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
 echo ""
+
+{ echo; echo "host jira jira 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
+
 echo "******JIRA DATABASE CREATED******"
