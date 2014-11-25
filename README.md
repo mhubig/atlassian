@@ -38,6 +38,19 @@ from a backup for each app and adapt the database connection settings!
     # execute a bash shell
     $ docker exec -it atlassian_stash_1 bash
 
+### First run
+
+If you start this orchestration for the first time, a handy feature is to
+import your old data. If you're e.g. moving everything to another server
+you can put your database backups into the tmp folder and the db initscript
+will pick them up automagically on the first run.
+
+    # move your jira db backup file to tmp (filename is important).
+    $ mv jira_backup.sql tmp/jira.dump
+
+    # unpack your jira-home backup archive
+    $ tar xzf jira-home.tar.gz --strip=1 -C jira-home
+
 ### Backup the PostgreSQL data
 
     # backup the confluence database

@@ -11,4 +11,15 @@ echo ""
 { echo; echo "host confluence confluence 0.0.0.0/0 trust"; } >> \
   "$PGDATA"/pg_hba.conf
 
+if [ -r '/tmp/confluence.dump' ]; then
+    echo "**IMPORTING CONFLUENCE DATABASE BACKUP**"
+    gosu postgres postgres &
+    PID=$!
+    sleep 2
+    gosu postgres psql confluence < /tmp/confluence.dump
+    kill $PID
+    sleep 2
+    echo "**CONFLUENCE DATABASE BACKUP IMPORTED***"
+fi
+
 echo "******CONFLUENCE DATABASE CREATED******"

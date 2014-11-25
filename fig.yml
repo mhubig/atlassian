@@ -47,6 +47,8 @@ crowd:
 
 database:
   build: docker/postgres
+  volumes:
+    - tmp:/tmp # import backups
   volumes_from:
     - persistent
 
