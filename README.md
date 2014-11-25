@@ -76,22 +76,22 @@ will pick them up automagically on the first run.
 ### Restore the PostgreSQL data
 
     # restore the confluence database backup
-    $ sudo docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
         postgres sh -c 'pg_restore -U confluence -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d confluence /tmp/confluence.dump'
 
     # restore the stash database backup
-    $ sudo docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
         postgres sh -c 'pg_restore -U stash -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d stash /tmp/stash.dump'
 
     # restore the jira database backup
-    $ sudo docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
         postgres sh -c 'pg_restore -U jira -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d jira /tmp/jira.dump'
 
     # restore the crowd database backup
-    $ sudo docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
         postgres sh -c 'pg_restore -U crowd -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d crowd /tmp/crowd.dump'
 
