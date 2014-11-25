@@ -14,11 +14,9 @@ echo ""
 if [ -r '/tmp/confluence.dump' ]; then
     echo "**IMPORTING CONFLUENCE DATABASE BACKUP**"
     gosu postgres postgres &
-    PID=$!
-    sleep 2
+    SERVER=$!; sleep 2
     gosu postgres psql confluence < /tmp/confluence.dump
-    kill $PID
-    sleep 2
+    kill $SERVER; wait $SERVER
     echo "**CONFLUENCE DATABASE BACKUP IMPORTED***"
 fi
 

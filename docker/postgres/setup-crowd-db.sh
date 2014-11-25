@@ -17,22 +17,18 @@ echo ""
 if [ -r '/tmp/crowd.dump' ]; then
     echo "**IMPORTING CROWD DATABASE BACKUP**"
     gosu postgres postgres &
-    PID=$!
-    sleep 2
+    SERVER=$!; sleep 2
     gosu postgres psql crowd < /tmp/crowd.dump
-    kill $PID
-    sleep 2
+    kill $SERVER; wait $SERVER
     echo "**CROWD DATABASE BACKUP IMPORTED***"
 fi
 
 if [ -r '/tmp/crowdid.dump' ]; then
     echo "**IMPORTING CROWDID DATABASE BACKUP**"
     gosu postgres postgres &
-    PID=$!
-    sleep 2
+    SERVER=$!; sleep 2
     gosu postgres psql crowdid < /tmp/crowdid.dump
-    kill $PID
-    sleep 2
+    kill $SERVER; wait $SERVER
     echo "**CROWDID DATABASE BACKUP IMPORTED***"
 fi
 

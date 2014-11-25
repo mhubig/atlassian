@@ -13,11 +13,9 @@ echo ""
 if [ -r '/tmp/stash.dump' ]; then
     echo "**IMPORTING STASH DATABASE BACKUP**"
     gosu postgres postgres &
-    PID=$!
-    sleep 2
+    SERVER=$!; sleep 2
     gosu postgres psql stash < /tmp/stash.dump
-    kill $PID
-    sleep 2
+    kill $SERVER; wait $SERVER
     echo "**STASH DATABASE BACKUP IMPORTED***"
 fi
 

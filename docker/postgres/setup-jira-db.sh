@@ -13,11 +13,9 @@ echo ""
 if [ -r '/tmp/jira.dump' ]; then
     echo "**IMPORTING JIRA DATABASE BACKUP**"
     gosu postgres postgres &
-    PID=$!
-    sleep 2
+    SERVER=$!; sleep 2
     gosu postgres psql jira < /tmp/jira.dump
-    kill $PID
-    sleep 2
+    kill $SERVER; wait $SERVER
     echo "**JIRA DATABASE BACKUP IMPORTED***"
 fi
 
