@@ -8,7 +8,7 @@ RUN mkdir /opt/crowd-home && chown -R crowd:crowd /opt/crowd-home
 RUN wget -O - \
       http://www.atlassian.com/software/crowd/downloads/binary/atlassian-crowd-${CROWD_VERSION}.tar.gz \
       | tar xzf - --strip=1 -C /opt/crowd \
-    && echo "confluence.home = ${CROWD_HOME}" > \
+    && echo "crowd.home = ${CROWD_HOME}" > \
        /opt/crowd/crowd-webapp/WEB-INF/classes/crowd-init.properties \
     && chown -R crowd:crowd /opt/crowd
 
