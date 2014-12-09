@@ -51,6 +51,12 @@ will pick them up automagically on the first run.
     # unpack your jira-home backup archive
     $ tar xzf jira-home.tar.gz --strip=1 -C jira-home
 
+### Backup the home folders
+
+    $ mkdir -p backup/$(date +%F)
+    $ for i in crowd confluence stash jira; do \
+      tar czf backup/$(date +%F)/$i-home.tgz $i-home; done
+
 ### Backup the PostgreSQL data
 
     # backup the confluence database
