@@ -15,6 +15,7 @@ stash:
   build: docker/stash
   ports:
     - "7990:7990" # no cache
+    - "7999:7999" # ssh port
   links:
     - database
   volumes:
