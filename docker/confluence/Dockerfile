@@ -17,5 +17,6 @@ RUN wget -O - \
 WORKDIR /opt/confluence
 VOLUME ["/opt/confluence-home"]
 USER confluence
+ENV HOME ${CONFLUENCE_HOME}
 
 CMD ["/opt/confluence/bin/catalina.sh", "run"]

@@ -14,6 +14,7 @@ RUN wget -O - \
 WORKDIR /opt/jira
 VOLUME ["/opt/jira-home"]
 USER jira
+ENV HOME ${JIRA_HOME}
 
 ENV JVM_SUPPORT_RECOMMENDED_ARGS -Datlassian.plugins.enable.wait=300
 CMD ["/opt/jira/bin/catalina.sh", "run"]

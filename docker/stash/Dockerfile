@@ -15,5 +15,6 @@ RUN wget -O - \
 WORKDIR /opt/stash
 VOLUME ["/opt/stash-home"]
 USER stash
+ENV HOME ${STASH_HOME}
 
 CMD ["/opt/stash/bin/catalina.sh", "run"]

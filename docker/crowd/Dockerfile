@@ -15,5 +15,6 @@ RUN wget -O - \
 WORKDIR /opt/crowd
 VOLUME ["/opt/crowd-home"]
 USER crowd
+ENV HOME ${CROWD_HOME}
 
 CMD ["/opt/crowd/apache-tomcat/bin/catalina.sh", "run"]
