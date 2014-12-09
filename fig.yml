@@ -1,4 +1,5 @@
 nginx:
+  hostname: nginx
   build: docker/nginx
   ports:
     - "80:80"
@@ -10,6 +11,7 @@ nginx:
     - crowd
 
 stash:
+  hostname: stash
   build: docker/stash
   ports:
     - "7990:7990" # no cache
@@ -19,6 +21,7 @@ stash:
     - stash-home:/opt/stash-home
 
 jira:
+  hostname: jira
   build: docker/jira
   ports:
     - "8080:8080" # no cache
@@ -28,6 +31,7 @@ jira:
     - jira-home:/opt/jira-home
 
 confluence:
+  hostname: confluence
   build: docker/confluence
   ports:
     - "8090:8090" # no cache
@@ -37,6 +41,7 @@ confluence:
     - confluence-home:/opt/confluence-home
 
 crowd:
+  hostname: crowd
   build: docker/crowd
   ports:
     - "8095:8095" # no cache
@@ -46,6 +51,7 @@ crowd:
     - crowd-home:/opt/crowd-home
 
 database:
+  hostname: database
   build: docker/postgres
   volumes:
     - tmp:/tmp # import backups
