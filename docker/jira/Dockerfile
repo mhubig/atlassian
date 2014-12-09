@@ -1,6 +1,6 @@
 FROM dockerfile/java:oracle-java7
 
-ENV JIRA_VERSION 6.2
+ENV JIRA_VERSION 6.3.12
 ENV JIRA_HOME /opt/jira-home
 
 RUN useradd --create-home --home-dir /opt/jira --shell /bin/bash jira
