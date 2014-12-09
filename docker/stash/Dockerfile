@@ -9,6 +9,7 @@ RUN wget -O - \
       http://www.atlassian.com/software/stash/downloads/binary/atlassian-stash-${STASH_VERSION}.tar.gz \
       | tar xzf - --strip=1 -C /opt/stash \
     && perl -i -p -e 's/^JVM_SUPPORT/#JVM_SUPPORT/' /opt/stash/bin/setenv.sh \
+    && perl -i -p -e 's/^# umask 0027/umask 0027/'  /opt/stash/bin/setenv.sh \
     && chown -R stash:stash /opt/stash
 
 WORKDIR /opt/stash
