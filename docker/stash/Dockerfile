@@ -1,6 +1,6 @@
 FROM dockerfile/java:oracle-java8
 
-ENV STASH_VERSION 3.4.3
+ENV STASH_VERSION 3.5.0
 ENV STASH_HOME /opt/stash-home
 
 RUN useradd --create-home --home-dir /opt/stash --shell /bin/bash stash
