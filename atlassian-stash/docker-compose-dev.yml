@@ -4,7 +4,7 @@ stash:
     service: stash
   ports:
     - "80:7990"
-    - "22:7999"
+    - "8022:7999" # ssh port
   links:
     - database
   volumes:
