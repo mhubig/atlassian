@@ -43,6 +43,15 @@ from a backup for each app and adapt the database connection settings!
     # execute a bash shell inside a running container
     $ docker exec -it atlassian_stash_1 bash
 
+    # add the following entrys to your `/etc/hosts`
+    $ boot2docker ip -> 192.168.59.103
+    $ cat /etc/hosts
+    192.168.59.103  boot2docker.local boot2docker
+    192.168.59.103  stash.boot2docker.local stash
+    192.168.59.103  jira.boot2docker.local jira
+    192.168.59.103  docs.boot2docker.local docs
+    192.168.59.103  crowd.boot2docker.local crowd
+
 ### First run
 
 If you start this orchestration for the first time, a handy feature is to
