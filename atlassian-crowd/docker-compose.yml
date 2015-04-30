@@ -1,0 +1,16 @@
+crowd:
+  extends:
+    file: crowd.yml
+    service: crowd
+  restart: always
+  links:
+    - database
+  volumes:
+    - home:/opt/crowd-home
+
+database:
+  image: postgres:9.4
+  restart: always
+  volumes:
+    - data:/var/lib/postgresql/data
+    - setup-crowd-db.sh:/docker-entrypoint-initdb.d/setup-crowd-db.sh

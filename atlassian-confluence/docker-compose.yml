@@ -1,0 +1,14 @@
+confluence:
+  extends:
+    file: confluence/confluence.yml
+    service: confluence
+  restart: always
+  links:
+    - database
+
+database:
+  image: postgres:9.4
+  restart: always
+  volumes:
+    - data:/var/lib/postgresql/data
+    - setup-confluence-db.sh:/docker-entrypoint-initdb.d/setup-confluence-db.sh

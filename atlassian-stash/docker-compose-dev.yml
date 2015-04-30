@@ -1,0 +1,11 @@
+stash:
+  extends:
+    file: stash.yml
+    service: stash
+  links:
+    - database
+
+database:
+  image: postgres:9.4
+  volumes:
+    - setup-stash-db.sh:/docker-entrypoint-initdb.d/setup-stash-db.sh

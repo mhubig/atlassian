@@ -1,0 +1,11 @@
+confluence:
+  extends:
+    file: confluence/confluence.yml
+    service: confluence
+  links:
+    - database
+
+database:
+  image: postgres:9.4
+  volumes:
+    - setup-confluence-db.sh:/docker-entrypoint-initdb.d/setup-confluence-db.sh

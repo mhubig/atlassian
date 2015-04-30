@@ -1,0 +1,13 @@
+jira:
+  extends:
+    file: atlassian-jira/jira.yml
+    service: jira
+  links:
+    - database
+  volumes:
+    - atlassian-jira/home:/opt/jira-home
+
+database:
+  image: postgres:9.4
+  volumes:
+    - setup-jira-db.sh:/docker-entrypoint-initdb.d/setup-jira-db.sh
