@@ -1,6 +1,6 @@
 confluence:
   extends:
-    file: confluence/confluence.yml
+    file: confluence.yml
     service: confluence
   links:
     - database
