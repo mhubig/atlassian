@@ -5,6 +5,8 @@ stash:
   restart: always
   links:
     - database
+  volumes:
+    - home:/opt/stash-home
 
 database:
   image: postgres:9.4

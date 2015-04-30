@@ -4,6 +4,8 @@ stash:
     service: stash
   links:
     - database
+  volumes:
+    - home:/opt/stash-home
 
 database:
   image: postgres:9.4

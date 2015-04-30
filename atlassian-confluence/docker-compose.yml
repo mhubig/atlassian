@@ -5,6 +5,8 @@ confluence:
   restart: always
   links:
     - database
+  volumes:
+    - home:/opt/confluence-home
 
 database:
   image: postgres:9.4

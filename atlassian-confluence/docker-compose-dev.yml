@@ -4,6 +4,8 @@ confluence:
     service: confluence
   links:
     - database
+  volumes:
+    - home:/opt/confluence-home
 
 database:
   image: postgres:9.4
