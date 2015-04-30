@@ -1,0 +1,6 @@
+crowd:
+  build: .
+  ports:
+    - "8095:8095"
+  volumes:
+    - home:/opt/crowd-home

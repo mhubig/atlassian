@@ -1,0 +1,6 @@
+atlassian-confluence:
+  build: .
+  ports:
+    - "8090:8090" # no cache
+  volumes:
+    - home:/opt/confluence-home

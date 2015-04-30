@@ -1,5 +1,5 @@
 nginx:
-  build: nginx
+  image: nginx:1.9
   restart: always
   ports:
     - "80:80"
@@ -9,43 +9,44 @@ nginx:
     - jira
     - confluence
     - crowd
+  volumes:
+    - nginx.conf:/etc/nginx/nginx.conf
 
 stash:
-  build: atlassian-stash
+  extends:
+    file: atlassian-stash/stash.yml
+    service: stash
   restart: always
-  ports:
-    - "7990:7990" # no cache
-    - "7999:7999" # ssh port
   links:
     - database
   volumes:
     - atlassian-stash/home:/opt/stash-home
 
 jira:
-  build: atlassian-jira
+  extends:
+    file: atlassian-jira/jira.yml
+    service: jira
   restart: always
-  ports:
-    - "8080:8080" # no cache
   links:
     - database
   volumes:
     - atlassian-jira/home:/opt/jira-home
 
 confluence:
-  build: atlassian-confluence
+  extends:
+    file: atlassian-confluence/confluence.yml
+    service: confluence
   restart: always
-  ports:
-    - "8090:8090" # no cache
   links:
     - database
   volumes:
     - atlassian-confluence/home:/opt/confluence-home
 
 crowd:
-  build: atlassian-crowd
+  extends:
+    file: atlassian-crowd/crowd.yml
+    service: crowd
   restart: always
-  ports:
-    - "8095:8095" # no cache
   links:
     - database
   volumes:
@@ -55,6 +56,9 @@ database:
   image: postgres:9.4
   restart: always
   volumes:
-    - postgres/data:/var/lib/postgresql/data
-    - postgres/initdb:/docker-entrypoint-initdb.d
+    - data:/var/lib/postgresql/data
+    - atlassian-confluence/setup-confluence-db.sh:/docker-entrypoint-initdb.d/setup-confluence-db.sh
+    - atlassian-crowd/setup-crowd-db.sh:/docker-entrypoint-initdb.d/setup-crowd-db.sh
+    - atlassian-jira/setup-jira-db.sh:/docker-entrypoint-initdb.d/setup-jira-db.sh
+    - atlassian-stash/setup-stash-db.sh:/docker-entrypoint-initdb.d/setup-stash-db.sh
     - tmp:/tmp # import backups
