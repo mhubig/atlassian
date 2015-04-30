@@ -1,5 +1,7 @@
 ## Atlassian services
 
+    Version: 0.1.0
+
 This repository holds a dockerized orchestration of the Atlassian web apps
 Jira, Stash and Confluence. To simplify the usermangement Crowd is also
 included. For more information on the apps please refere to the offical
