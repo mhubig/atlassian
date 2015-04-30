@@ -1,6 +1,6 @@
 nginx:
-  hostname: nginx
   build: docker/nginx
+  restart: always
   ports:
     - "80:80"
     - "443:443"
@@ -11,8 +11,8 @@ nginx:
     - crowd
 
 stash:
-  hostname: stash
   build: docker/stash
+  restart: always
   ports:
     - "7990:7990" # no cache
     - "7999:7999" # ssh port
@@ -22,8 +22,8 @@ stash:
     - stash-home:/opt/stash-home
 
 jira:
-  hostname: jira
   build: docker/jira
+  restart: always
   ports:
     - "8080:8080" # no cache
   links:
@@ -32,8 +32,8 @@ jira:
     - jira-home:/opt/jira-home
 
 confluence:
-  hostname: confluence
   build: docker/confluence
+  restart: always
   ports:
     - "8090:8090" # no cache
   links:
@@ -42,8 +42,8 @@ confluence:
     - confluence-home:/opt/confluence-home
 
 crowd:
-  hostname: crowd
   build: docker/crowd
+  restart: always
   ports:
     - "8095:8095" # no cache
   links:
@@ -52,14 +52,9 @@ crowd:
     - crowd-home:/opt/crowd-home
 
 database:
-  hostname: database
-  build: docker/postgres
+  image: postgres:9.4
+  restart: always
   volumes:
+    - data:/var/lib/postgresql/data
+    - docker/postgres:/docker-entrypoint-initdb.d
     - tmp:/tmp # import backups
-  volumes_from:
-    - persistent
-
-persistent:
-  image: busybox
-  volumes:
-    - /var/lib/postgresql/data

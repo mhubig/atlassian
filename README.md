@@ -1,42 +1,56 @@
 ## Atlassian services
 
+    Version: 0.1.0
+
 This repository holds a dockerized orchestration of the Atlassian web apps
 Jira, Stash and Confluence. To simplify the usermangement Crowd is also
 included. For more information on the apps please refere to the offical
 Atlassian websites:
 
-- [Jira](https://www.atlassian.com/software/jira)
-- [Stash](https://www.atlassian.com/software/stash)
-- [Confluence](https://www.atlassian.com/software/confluence)
-- [Crowd](https://www.atlassian.com/software/crowd)
+- [Jira][1]
+- [Stash][2]
+- [Confluence][3]
+- [Crowd][4]
 
 ### Prerequisites
 
 In order to run this apps you need to make sure you're running at least
-[docker 1.3.1](https://docker.com) and [fig 1.0.1](http://fig.sh). For
-detailed installation instructions please refere to the origin websites:
+[docker 1.6.0][5] and [docker-compose 1.2.0][6]. For detailed installation
+instructions please refere to the origin websites:
 
-  - [http://docs.docker.com/installation](http://docs.docker.com/installation)
-  - [http://www.fig.sh/install.html](http://www.fig.sh/install.html)
+  - [https://docs.docker.com/installation][7]
+  - [https://docs.docker.com/compose][8]
 
 ### Deploy/Update the application
 
     # rebuild the docker images
-    $ fig build
+    $ docker-compose build
 
-    # restart the docker images
-    $ fig up -d
+    # start the docker images
+    $ docker-compose up -d
 
     # inspect the logs
-    $ fig logs
+    $ docker-compose logs
 
 If you deploy the apps for the first time you may need to restore the database
 from a backup for each app and adapt the database connection settings!
 
-### Debug (aka. go inside) an image
+### Develop Mode / Debug an image
 
-    # execute a bash shell
+    # start in development mode
+    $ docker-compose -f docker-compose-dev.yml up
+
+    # execute a bash shell inside a running container
     $ docker exec -it atlassian_stash_1 bash
+
+    # add the following entrys to your `/etc/hosts`
+    $ boot2docker ip -> 192.168.59.103
+    $ cat /etc/hosts
+    192.168.59.103  boot2docker.local boot2docker
+    192.168.59.103  stash.boot2docker.local stash
+    192.168.59.103  jira.boot2docker.local jira
+    192.168.59.103  docs.boot2docker.local docs
+    192.168.59.103  crowd.boot2docker.local crowd
 
 ### First run
 
@@ -100,4 +114,14 @@ will pick them up automagically on the first run.
     $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
         postgres sh -c 'pg_restore -U crowd -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d crowd /tmp/crowd.dump'
+
+---
+[1]: https://www.atlassian.com/software/jira
+[2]: https://www.atlassian.com/software/stash
+[3]: https://www.atlassian.com/software/confluence
+[4]: https://www.atlassian.com/software/crowd
+[5]: https://docker.com
+[6]: https://docs.docker.com/compose
+[7]: https://docs.docker.com/installation
+[8]: https://docs.docker.com/compose/#installation-and-set-up
 
