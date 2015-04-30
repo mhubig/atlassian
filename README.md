@@ -1,5 +1,7 @@
 ## Atlassian services
 
+    Version: 0.1.0
+
 This repository holds a dockerized orchestration of the Atlassian web apps
 Jira, Stash and Confluence. To simplify the usermangement Crowd is also
 included. For more information on the apps please refere to the offical
@@ -40,6 +42,15 @@ from a backup for each app and adapt the database connection settings!
 
     # execute a bash shell inside a running container
     $ docker exec -it atlassian_stash_1 bash
+
+    # add the following entrys to your `/etc/hosts`
+    $ boot2docker ip -> 192.168.59.103
+    $ cat /etc/hosts
+    192.168.59.103  boot2docker.local boot2docker
+    192.168.59.103  stash.boot2docker.local stash
+    192.168.59.103  jira.boot2docker.local jira
+    192.168.59.103  docs.boot2docker.local docs
+    192.168.59.103  crowd.boot2docker.local crowd
 
 ### First run
 
