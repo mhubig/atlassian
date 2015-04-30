@@ -2,6 +2,8 @@ crowd:
   extends:
     file: crowd.yml
     service: crowd
+  ports:
+    - "80:8095"
   links:
     - database
   volumes:

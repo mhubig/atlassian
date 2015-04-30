@@ -2,6 +2,8 @@ jira:
   extends:
     file: jira.yml
     service: jira
+  ports:
+    - "80:8080"
   links:
     - database
   volumes:

@@ -2,6 +2,9 @@ stash:
   extends:
     file: stash.yml
     service: stash
+  ports:
+    - "80:7990"
+    - "22:7999"
   links:
     - database
   volumes:
