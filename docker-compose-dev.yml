@@ -56,4 +56,4 @@ database:
   restart: no
   volumes:
     - docker/postgres:/docker-entrypoint-initdb.d
-    - tmp:/tmp
+    - tmp:/tmp # import backups
