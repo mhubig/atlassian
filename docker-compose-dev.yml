@@ -1,5 +1,5 @@
 nginx:
-  build: docker/nginx
+  build: nginx
   restart: no
   ports:
     - "80:80"
@@ -11,7 +11,7 @@ nginx:
     - crowd
 
 stash:
-  build: docker/stash
+  build: atlassian-stash
   restart: no
   ports:
     - "7990:7990" # no cache
@@ -19,41 +19,41 @@ stash:
   links:
     - database
   volumes:
-    - stash-home:/opt/stash-home
+    - atlassian-stash/home:/opt/stash-home
 
 jira:
-  build: docker/jira
+  build: atlassian-jira
   restart: no
   ports:
     - "8080:8080" # no cache
   links:
     - database
   volumes:
-    - jira-home:/opt/jira-home
+    - atlassian-jira/home:/opt/jira-home
 
 confluence:
-  build: docker/confluence
+  build: atlassian-confluence
   restart: no
   ports:
     - "8090:8090" # no cache
   links:
     - database
   volumes:
-    - confluence-home:/opt/confluence-home
+    - atlassian-confluence/home:/opt/confluence-home
 
 crowd:
-  build: docker/crowd
+  build: atlassian-crowd
   restart: no
   ports:
     - "8095:8095" # no cache
   links:
     - database
   volumes:
-    - crowd-home:/opt/crowd-home
+    - atlassian-crowd/home:/opt/crowd-home
 
 database:
   image: postgres:9.4
   restart: no
   volumes:
-    - docker/postgres:/docker-entrypoint-initdb.d
+    - postgres/initdb:/docker-entrypoint-initdb.d
     - tmp:/tmp # import backups
