@@ -55,6 +55,6 @@ database:
   image: postgres:9.4
   restart: always
   volumes:
-    - tmp:/tmp # import backups
-    - docker/postgres:/docker-entrypoint-initdb.d
     - data:/var/lib/postgresql/data
+    - docker/postgres:/docker-entrypoint-initdb.d
+    - tmp:/tmp # import backups
