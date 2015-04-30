@@ -1,0 +1,59 @@
+nginx:
+  build: docker/nginx
+  restart: no
+  ports:
+    - "80:80"
+    - "443:443"
+  links:
+    - stash
+    - jira
+    - confluence
+    - crowd
+
+stash:
+  build: docker/stash
+  restart: no
+  ports:
+    - "7990:7990" # no cache
+    - "7999:7999" # ssh port
+  links:
+    - database
+  volumes:
+    - stash-home:/opt/stash-home
+
+jira:
+  build: docker/jira
+  restart: no
+  ports:
+    - "8080:8080" # no cache
+  links:
+    - database
+  volumes:
+    - jira-home:/opt/jira-home
+
+confluence:
+  build: docker/confluence
+  restart: no
+  ports:
+    - "8090:8090" # no cache
+  links:
+    - database
+  volumes:
+    - confluence-home:/opt/confluence-home
+
+crowd:
+  build: docker/crowd
+  restart: no
+  ports:
+    - "8095:8095" # no cache
+  links:
+    - database
+  volumes:
+    - crowd-home:/opt/crowd-home
+
+database:
+  image: postgres:9.4
+  restart: no
+  volumes:
+    - docker/postgres:/docker-entrypoint-initdb.d
+    - tmp:/tmp
