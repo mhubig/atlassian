@@ -1,0 +1,6 @@
+confluence:
+  build: .
+  ports:
+    - "8090:8090"
+  volumes:
+    - home:/opt/confluence-home

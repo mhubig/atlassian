@@ -1,0 +1,16 @@
+jira:
+  extends:
+    file: jira.yml
+    service: jira
+  restart: always
+  links:
+    - database
+  volumes:
+    - home:/opt/jira-home
+
+database:
+  image: postgres:9.4
+  restart: always
+  volumes:
+    - data:/var/lib/postgresql/data
+    - setup-jira-db.sh:/docker-entrypoint-initdb.d/setup-jira-db.sh
