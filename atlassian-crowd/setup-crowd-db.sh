@@ -14,20 +14,20 @@ echo ""
 { echo; echo "host crowd crowd 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
 { echo; echo "host crowdid crowd 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
 
-if [ -r '/tmp/crowd.dump' ]; then
+if [ -r '/tmp/dumps/crowd.dump' ]; then
     echo "**IMPORTING CROWD DATABASE BACKUP**"
     gosu postgres postgres &
     SERVER=$!; sleep 2
-    gosu postgres psql crowd < /tmp/crowd.dump
+    gosu postgres psql crowd < /tmp/dumps/crowd.dump
     kill $SERVER; wait $SERVER
     echo "**CROWD DATABASE BACKUP IMPORTED***"
 fi
 
-if [ -r '/tmp/crowdid.dump' ]; then
+if [ -r '/tmp/dumps/crowdid.dump' ]; then
     echo "**IMPORTING CROWDID DATABASE BACKUP**"
     gosu postgres postgres &
     SERVER=$!; sleep 2
-    gosu postgres psql crowdid < /tmp/crowdid.dump
+    gosu postgres psql crowdid < /tmp/dumps/crowdid.dump
     kill $SERVER; wait $SERVER
     echo "**CROWDID DATABASE BACKUP IMPORTED***"
 fi

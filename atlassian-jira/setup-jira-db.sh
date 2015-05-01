@@ -10,11 +10,11 @@ echo ""
 
 { echo; echo "host jira jira 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
 
-if [ -r '/tmp/jira.dump' ]; then
+if [ -r '/tmp/dumps/jira.dump' ]; then
     echo "**IMPORTING JIRA DATABASE BACKUP**"
     gosu postgres postgres &
     SERVER=$!; sleep 2
-    gosu postgres psql jira < /tmp/jira.dump
+    gosu postgres psql jira < /tmp/dumps/jira.dump
     kill $SERVER; wait $SERVER
     echo "**JIRA DATABASE BACKUP IMPORTED***"
 fi
