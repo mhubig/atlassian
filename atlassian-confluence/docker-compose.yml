@@ -1,7 +1,5 @@
 confluence:
-  extends:
-    file: confluence.yml
-    service: confluence
+  image: mhubig/atlassian-confluence
   restart: always
   links:
     - database

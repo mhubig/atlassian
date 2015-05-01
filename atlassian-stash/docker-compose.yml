@@ -1,7 +1,5 @@
 stash:
-  extends:
-    file: stash.yml
-    service: stash
+  image: mhubig/atlassian-stash
   restart: always
   links:
     - database

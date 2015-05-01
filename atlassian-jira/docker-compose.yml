@@ -1,7 +1,5 @@
 jira:
-  extends:
-    file: jira.yml
-    service: jira
+  image: mhubig/atlassian-jira
   restart: always
   links:
     - database

@@ -1,6 +1,6 @@
 ## Atlassian services
 
-    Version: 0.2.0
+    Version: 1.0.0
 
 This repository holds a dockerized orchestration of the Atlassian web apps
 Jira, Stash and Confluence. To simplify the usermangement Crowd is also
@@ -37,7 +37,7 @@ are some examples:
     # start all the docker images (in development mode)
     $ docker-compose -f docker-compose-dev.yml dev
 
-    # start the stash image (in produktion mode)
+    # start the stash image (in production mode)
     $ cd atlassian-stash && docker-compose -f docker-compose-dev.yml up
 
     # inspect the logs
