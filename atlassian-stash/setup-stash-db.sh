@@ -10,11 +10,11 @@ echo ""
 
 { echo; echo "host stash stash 0.0.0.0/0 trust"; } >> "$PGDATA"/pg_hba.conf
 
-if [ -r '/tmp/stash.dump' ]; then
+if [ -r '/tmp/dumps/stash.dump' ]; then
     echo "**IMPORTING STASH DATABASE BACKUP**"
     gosu postgres postgres &
     SERVER=$!; sleep 2
-    gosu postgres psql stash < /tmp/stash.dump
+    gosu postgres psql stash < /tmp/dumps/stash.dump
     kill $SERVER; wait $SERVER
     echo "**STASH DATABASE BACKUP IMPORTED***"
 fi

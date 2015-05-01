@@ -1,0 +1,15 @@
+jira:
+  extends:
+    file: jira.yml
+    service: jira
+  ports:
+    - "80:8080"
+  links:
+    - database
+  volumes:
+    - home:/opt/jira-home
+
+database:
+  image: postgres:9.4
+  volumes:
+    - setup-jira-db.sh:/docker-entrypoint-initdb.d/setup-jira-db.sh

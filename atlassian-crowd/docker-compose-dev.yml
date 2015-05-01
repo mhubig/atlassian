@@ -1,0 +1,15 @@
+crowd:
+  extends:
+    file: crowd.yml
+    service: crowd
+  ports:
+    - "80:8095"
+  links:
+    - database
+  volumes:
+    - home:/opt/crowd-home
+
+database:
+  image: postgres:9.4
+  volumes:
+    - setup-crowd-db.sh:/docker-entrypoint-initdb.d/setup-crowd-db.sh

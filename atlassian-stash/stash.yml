@@ -1,0 +1,7 @@
+stash:
+  build: .
+  ports:
+    - "7990:7990"
+    - "7999:7999" # ssh port
+  volumes:
+    - home:/opt/stash-home

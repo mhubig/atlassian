@@ -1,6 +1,6 @@
 ## Atlassian services
 
-    Version: 0.1.0
+    Version: 0.2.0
 
 This repository holds a dockerized orchestration of the Atlassian web apps
 Jira, Stash and Confluence. To simplify the usermangement Crowd is also
@@ -21,23 +21,34 @@ instructions please refere to the origin websites:
   - [https://docs.docker.com/installation][7]
   - [https://docs.docker.com/compose][8]
 
-### Deploy/Update the application
+### Start the images
 
-    # rebuild the docker images
+You can start all images as a orchestration from the root folder. To
+only use a particularly image change into a subfolder. You better use
+the `docker-compose-dev.yml` file if you're not in production. Here
+are some examples:
+
+    # build all the images
     $ docker-compose build
 
-    # start the docker images
-    $ docker-compose up -d
+    # build only the stash image
+    $ cd atlassian-stash && docker-compose build
+
+    # start all the docker images (in development mode)
+    $ docker-compose -f docker-compose-dev.yml dev
+
+    # start the stash image (in produktion mode)
+    $ cd atlassian-stash && docker-compose -f docker-compose-dev.yml up
 
     # inspect the logs
     $ docker-compose logs
 
-If you deploy the apps for the first time you may need to restore the database
-from a backup for each app and adapt the database connection settings!
+If you deploy the apps for the first time you may need to restore the
+databases from a backup and adapt the database connection settings!
 
 ### Develop Mode / Debug an image
 
-    # start in development mode
+    # use the development mode
     $ docker-compose -f docker-compose-dev.yml up
 
     # execute a bash shell inside a running container
