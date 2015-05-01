@@ -13,9 +13,7 @@ nginx:
     - nginx.conf:/etc/nginx/nginx.conf
 
 stash:
-  extends:
-    file: atlassian-stash/stash.yml
-    service: stash
+  image: mhubig/atlassian-stash
   restart: always
   links:
     - database
@@ -23,9 +21,7 @@ stash:
     - atlassian-stash/home:/opt/stash-home
 
 jira:
-  extends:
-    file: atlassian-jira/jira.yml
-    service: jira
+  image: mhubig/atlassian-jira
   restart: always
   links:
     - database
@@ -33,9 +29,7 @@ jira:
     - atlassian-jira/home:/opt/jira-home
 
 confluence:
-  extends:
-    file: atlassian-confluence/confluence.yml
-    service: confluence
+  image: mhubig/atlassian-confluence
   restart: always
   links:
     - database
@@ -43,9 +37,7 @@ confluence:
     - atlassian-confluence/home:/opt/confluence-home
 
 crowd:
-  extends:
-    file: atlassian-crowd/crowd.yml
-    service: crowd
+  image: mhubig/atlassian-crowd
   restart: always
   links:
     - database
@@ -61,4 +53,4 @@ database:
     - atlassian-crowd/setup-crowd-db.sh:/docker-entrypoint-initdb.d/setup-crowd-db.sh
     - atlassian-jira/setup-jira-db.sh:/docker-entrypoint-initdb.d/setup-jira-db.sh
     - atlassian-stash/setup-stash-db.sh:/docker-entrypoint-initdb.d/setup-stash-db.sh
-    - tmp:/tmp # import backups
+    - tmp:/tmp/dumps # import backups

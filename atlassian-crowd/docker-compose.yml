@@ -1,7 +1,5 @@
 crowd:
-  extends:
-    file: crowd.yml
-    service: crowd
+  image: mhubig/atlassian-crowd
   restart: always
   links:
     - database
