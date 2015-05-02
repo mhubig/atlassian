@@ -4,7 +4,8 @@ ENV CONFLUENCE_VERSION 5.7.1
 ENV CONFLUENCE_HOME /opt/confluence-home
 ENV HOME /opt/confluence-home
 
-RUN mkdir /opt/confluence-home
+RUN mkdir /opt/confluence &&
+    mkdir /opt/confluence-home
 RUN wget -O - \
     http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz \
         | tar xzf - --strip=1 -C /opt/confluence \
