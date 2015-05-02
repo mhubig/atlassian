@@ -39,7 +39,7 @@ If you deploy the app for the first time you may need to restore the database fr
 ### Restore
 
     # unpack a homefolder backup
-    $ cd home && tar xzvf ../backup/home_2015-05-02.tgz
+    $ tar xzvf backup/home_2015-05-02.tgz --strip=1 -C home
 
     # restore the  database backup
     $ docker run -it --rm --link atlassianconfluence_database_1:db \

@@ -29,7 +29,7 @@ If you deploy the app for the first time you may need to restore the database fr
 ### Backup
 
     # backup the home folder
-    $ tar czf backup/home_$(date +%F).tgz home
+    $ tar xzvf backup/home_2015-05-02.tgz --strip=1 -C home
 
     # backup the crowd database
     $ docker run -it --rm --link atlassiancrowd_database_1:db \

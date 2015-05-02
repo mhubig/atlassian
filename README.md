@@ -74,13 +74,13 @@ will pick them up automagically on the first run.
     $ mv jira_backup.sql tmp/jira.dump
 
     # unpack your jira-home backup archive
-    $ tar xzf jira-home.tar.gz --strip=1 -C jira-home
+    $ tar xzf jira-home.tar.gz --strip=1 -C atlassian-jira/home
 
 ### Backup the home folders
 
     $ mkdir -p backup/$(date +%F)
     $ for i in crowd confluence stash jira; do \
-      tar czf backup/$(date +%F)/$i-home.tgz $i-home; done
+      tar czf backup/$(date +%F)/$i-home.tgz atlassian-$i/home; done
 
 ### Backup the PostgreSQL data
 
