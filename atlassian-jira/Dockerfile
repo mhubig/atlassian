@@ -9,7 +9,7 @@ RUN mkdir /opt/jira && \
 RUN wget -O - \
       http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-${JIRA_VERSION}.tar.gz \
       | tar xzf - --strip=1 -C /opt/jira \
-    && perl -i -p -e 's/^JVM_SUPPORT/#JVM_SUPPORT/' /opt/jira/bin/setenv.sh \
+    && perl -i -p -e 's/^JVM_SUPPORT/#JVM_SUPPORT/' /opt/jira/bin/setenv.sh
 
 WORKDIR /opt/jira
 VOLUME ["/opt/jira-home"]

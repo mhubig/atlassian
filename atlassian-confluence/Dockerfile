@@ -13,7 +13,7 @@ RUN wget -O - \
     && perl -i -p -e 's/-Xmx1024m/-Xmx512m/' /opt/confluence/bin/setenv.sh \
     && perl -i -p -e 's/_%T//' /opt/confluence/bin/setenv.sh \
     && echo "confluence.home = ${CONFLUENCE_HOME}" > \
-        /opt/confluence/confluence/WEB-INF/classes/confluence-init.properties \
+        /opt/confluence/confluence/WEB-INF/classes/confluence-init.properties
 
 WORKDIR /opt/confluence
 VOLUME ["/opt/confluence-home"]

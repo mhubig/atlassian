@@ -10,7 +10,7 @@ RUN wget -O - \
       http://www.atlassian.com/software/crowd/downloads/binary/atlassian-crowd-${CROWD_VERSION}.tar.gz \
       | tar xzf - --strip=1 -C /opt/crowd \
     && echo "crowd.home = ${CROWD_HOME}" > \
-       /opt/crowd/crowd-webapp/WEB-INF/classes/crowd-init.properties \
+       /opt/crowd/crowd-webapp/WEB-INF/classes/crowd-init.properties
 
 WORKDIR /opt/crowd
 VOLUME ["/opt/crowd-home"]
