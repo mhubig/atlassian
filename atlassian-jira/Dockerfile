@@ -4,7 +4,7 @@ ENV JIRA_VERSION 6.3.12
 ENV JIRA_HOME /opt/jira-home
 ENV HOME /opt/jira-home
 
-RUN mkdir /opt/jira &&
+RUN mkdir /opt/jira && \
     mkdir /opt/jira-home
 RUN wget -O - \
       http://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-${JIRA_VERSION}.tar.gz \

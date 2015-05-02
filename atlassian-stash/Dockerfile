@@ -4,7 +4,7 @@ ENV STASH_VERSION 3.5.0
 ENV STASH_HOME /opt/stash-home
 ENV HOME /opt/stash-home
 
-RUN mkdir /opt/stash &&
+RUN mkdir /opt/stash && \
     mkdir /opt/stash-home
 RUN wget -O - \
       http://www.atlassian.com/software/stash/downloads/binary/atlassian-stash-${STASH_VERSION}.tar.gz \
