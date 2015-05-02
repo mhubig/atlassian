@@ -1,6 +1,6 @@
 ## Atlassian services
 
-    Version: 1.0.0
+    Version: 1.0.1
 
 This repository holds a dockerized orchestration of the Atlassian web apps
 Jira, Stash and Confluence. To simplify the usermangement Crowd is also
@@ -48,7 +48,7 @@ databases from a backup and adapt the database connection settings!
 
 ### Develop Mode / Debug an image
 
-    # use the development mode
+    # use the development compose file
     $ docker-compose -f docker-compose-dev.yml up
 
     # execute a bash shell inside a running container
@@ -74,55 +74,55 @@ will pick them up automagically on the first run.
     $ mv jira_backup.sql tmp/jira.dump
 
     # unpack your jira-home backup archive
-    $ tar xzf jira-home.tar.gz --strip=1 -C jira-home
+    $ tar xzf jira-home.tar.gz --strip=1 -C atlassian-jira/home
 
 ### Backup the home folders
 
     $ mkdir -p backup/$(date +%F)
     $ for i in crowd confluence stash jira; do \
-      tar czf backup/$(date +%F)/$i-home.tgz $i-home; done
+      tar czf backup/$(date +%F)/$i-home.tgz atlassian-$i/home; done
 
 ### Backup the PostgreSQL data
 
     # backup the confluence database
-    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_dump -U confluence -h "$DB_PORT_5432_TCP_ADDR" \
         -w confluence > /tmp/confluence.dump'
 
     # backup the stash database
-    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_dump -U stash -h "$DB_PORT_5432_TCP_ADDR" \
         -w stash > /tmp/stash.dump'
 
     # backup the jira database
-    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_dump -U jira -h "$DB_PORT_5432_TCP_ADDR" \
         -w jira > /tmp/jira.dump'
 
     # backup the crowd database
-    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_dump -U crowd -h "$DB_PORT_5432_TCP_ADDR" \
         -w crowd > /tmp/crowd.dump'
 
 ### Restore the PostgreSQL data
 
     # restore the confluence database backup
-    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_restore -U confluence -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d confluence /tmp/confluence.dump'
 
     # restore the stash database backup
-    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_restore -U stash -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d stash /tmp/stash.dump'
 
     # restore the jira database backup
-    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_restore -U jira -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d jira /tmp/jira.dump'
 
     # restore the crowd database backup
-    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd):/tmp \
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_restore -U crowd -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d crowd /tmp/crowd.dump'
 
