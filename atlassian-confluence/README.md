@@ -26,6 +26,27 @@ If you deploy the app for the first time you may need to restore the database fr
     # execute a bash shell
     $ docker exec -it atlassianconfluence_confluence_1 bash
 
+### Backup
+
+    # backup the home folder
+    $ tar czf backup/home_$(date +%F).tgz home
+
+    # backup the confluence database
+    $ docker run -it --rm --link atlassianconfluence_database_1:db \
+      -v $(pwd)/tmp:/tmp postgres sh -c 'pg_dump -U confluence \
+        -h "$DB_PORT_5432_TCP_ADDR" -w confluence > /tmp/confluence.dump'
+
+### Restore
+
+    # unpack a homefolder backup
+    $ cd home && tar xzvf ../backup/home_2015-05-02.tgz
+
+    # restore the  database backup
+    $ docker run -it --rm --link atlassianconfluence_database_1:db \
+      -v $(pwd)/tmp:/tmp postgres sh -c 'pg_restore -U confluence \
+        -h "$DB_PORT_5432_TCP_ADDR" -n public -w -d confluence \
+        /tmp/confluence.dump'
+
 ---
 [1]: https://www.atlassian.com/software/confluence
 [2]: https://docs.docker.com/installation
