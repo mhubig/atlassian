@@ -1,6 +1,6 @@
-FROM dockerfile/java:oracle-java7
+FROM dockerfile/java:oracle-java8
 
-ENV CONFLUENCE_VERSION 5.7.1
+ENV CONFLUENCE_VERSION 5.8.6
 ENV CONFLUENCE_HOME /opt/confluence-home
 ENV HOME /opt/confluence-home
 

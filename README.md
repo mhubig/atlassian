@@ -11,15 +11,16 @@ Atlassian websites:
 - [Stash][2]
 - [Confluence][3]
 - [Crowd][4]
+- [Bamboo][5]
 
 ### Prerequisites
 
 In order to run this apps you need to make sure you're running at least
-[docker 1.6.0][5] and [docker-compose 1.2.0][6]. For detailed installation
+[docker 1.6.0][6] and [docker-compose 1.2.0][7]. For detailed installation
 instructions please refere to the origin websites:
 
-  - [https://docs.docker.com/installation][7]
-  - [https://docs.docker.com/compose][8]
+  - [https://docs.docker.com/installation][8]
+  - [https://docs.docker.com/compose][9]
 
 ### Start the images
 
@@ -62,6 +63,7 @@ databases from a backup and adapt the database connection settings!
     192.168.59.103  jira.boot2docker.local jira
     192.168.59.103  docs.boot2docker.local docs
     192.168.59.103  crowd.boot2docker.local crowd
+    192.168.59.103  bamboo.boot2docker.local bamboo
 
 ### First run
 
@@ -104,6 +106,11 @@ will pick them up automagically on the first run.
         postgres sh -c 'pg_dump -U crowd -h "$DB_PORT_5432_TCP_ADDR" \
         -w crowd > /tmp/crowd.dump'
 
+    # backup the bamboo database
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
+        postgres sh -c 'pg_dump -U bamboo -h "$DB_PORT_5432_TCP_ADDR" \
+        -w crowd > /tmp/bamboo.dump'
+
 ### Restore the PostgreSQL data
 
     # restore the confluence database backup
@@ -126,13 +133,18 @@ will pick them up automagically on the first run.
         postgres sh -c 'pg_restore -U crowd -h "$DB_PORT_5432_TCP_ADDR" \
         -n public -w -d crowd /tmp/crowd.dump'
 
+    # restore the bamboo database backup
+    $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
+        postgres sh -c 'pg_restore -U bamboo -h "$DB_PORT_5432_TCP_ADDR" \
+        -n public -w -d crowd /tmp/bamboo.dump'
+
 ---
 [1]: https://www.atlassian.com/software/jira
 [2]: https://www.atlassian.com/software/stash
 [3]: https://www.atlassian.com/software/confluence
 [4]: https://www.atlassian.com/software/crowd
-[5]: https://docker.com
-[6]: https://docs.docker.com/compose
-[7]: https://docs.docker.com/installation
-[8]: https://docs.docker.com/compose/#installation-and-set-up
-
+[5]: https://www.atlassian.com/software/bamboo
+[6]: https://docker.com
+[7]: https://docs.docker.com/compose
+[8]: https://docs.docker.com/installation
+[9]: https://docs.docker.com/compose/#installation-and-set-up

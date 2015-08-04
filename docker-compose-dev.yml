@@ -47,6 +47,15 @@ crowd:
   volumes:
     - atlassian-crowd/home:/opt/crowd-home
 
+bamboo:
+  extends:
+    file: atlassian-bamboo/bamboo.yml
+    service: crowd
+  links:
+    - database
+  volumes:
+    - atlassian-bamboo/home:/opt/bamboo-home
+
 database:
   image: postgres:9.4
   volumes:
@@ -54,4 +63,5 @@ database:
     - atlassian-crowd/setup-crowd-db.sh:/docker-entrypoint-initdb.d/setup-crowd-db.sh
     - atlassian-jira/setup-jira-db.sh:/docker-entrypoint-initdb.d/setup-jira-db.sh
     - atlassian-stash/setup-stash-db.sh:/docker-entrypoint-initdb.d/setup-stash-db.sh
+    - atlassian-bamboo/setup-bamboo-db.sh:/docker-entrypoint-initdb.d/setup-bamboo-db.sh
     - tmp:/tmp/dumps # import backup
