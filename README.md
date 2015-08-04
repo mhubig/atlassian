@@ -61,7 +61,7 @@ databases from a backup and adapt the database connection settings!
     192.168.59.103  boot2docker.local boot2docker
     192.168.59.103  stash.boot2docker.local stash
     192.168.59.103  jira.boot2docker.local jira
-    192.168.59.103  docs.boot2docker.local docs
+    192.168.59.103  confluence.boot2docker.local confluence
     192.168.59.103  crowd.boot2docker.local crowd
     192.168.59.103  bamboo.boot2docker.local bamboo
 

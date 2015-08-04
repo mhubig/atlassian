@@ -1,4 +1,4 @@
-FROM dockerfile/java:oracle-java8
+FROM relateiq/oracle-java8
 
 ENV CROWD_VERSION 2.8.3
 ENV CROWD_HOME /opt/crowd-home

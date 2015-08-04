@@ -8,6 +8,7 @@ nginx:
     - jira
     - confluence
     - crowd
+    - bamboo
   volumes:
     - nginx.conf:/etc/nginx/nginx.conf
 
@@ -50,7 +51,7 @@ crowd:
 bamboo:
   extends:
     file: atlassian-bamboo/bamboo.yml
-    service: crowd
+    service: bamboo
   links:
     - database
   volumes:

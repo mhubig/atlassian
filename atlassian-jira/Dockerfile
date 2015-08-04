@@ -1,4 +1,4 @@
-FROM dockerfile/java:oracle-java8
+FROM relateiq/oracle-java8
 
 ENV JIRA_VERSION 6.4.9
 ENV JIRA_HOME /opt/jira-home
