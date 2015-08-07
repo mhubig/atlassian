@@ -4,9 +4,9 @@ ENV STASH_VERSION 3.11.1
 ENV STASH_HOME /opt/stash-home
 ENV HOME /opt/stash-home
 
-RUN apt-get update -y &&
+RUN apt-get update -y && \
     apt-get install git
-    
+
 RUN mkdir /opt/stash && \
     mkdir /opt/stash-home
 RUN wget -O - \
