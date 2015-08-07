@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "******CREATING JIRA DATABASE******"
-gosu postgres postgres --single <<- EOSQL
+gosu postgres psql --username postgres <<- EOSQL
    CREATE DATABASE jira WITH ENCODING 'UNICODE' LC_COLLATE 'C' LC_CTYPE 'C' \
        TEMPLATE template0;
    CREATE USER jira;
