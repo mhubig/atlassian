@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "******CREATING CROWD & CROWDID DATABASE******"
+echo "******CREATING BAMBOO DATABASE******"
 gosu postgres postgres --single <<- EOSQL
   CREATE DATABASE bamboo WITH ENCODING 'UNICODE' LC_COLLATE 'C' LC_CTYPE 'C' \
     TEMPLATE template0;
