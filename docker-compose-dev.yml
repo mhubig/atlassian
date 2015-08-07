@@ -60,6 +60,7 @@ bamboo:
 database:
   image: postgres:9.4
   volumes:
+    - data:/var/lib/postgresql/data
     - atlassian-confluence/setup-confluence-db.sh:/docker-entrypoint-initdb.d/setup-confluence-db.sh
     - atlassian-crowd/setup-crowd-db.sh:/docker-entrypoint-initdb.d/setup-crowd-db.sh
     - atlassian-jira/setup-jira-db.sh:/docker-entrypoint-initdb.d/setup-jira-db.sh
