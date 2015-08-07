@@ -5,7 +5,7 @@ ENV STASH_HOME /opt/stash-home
 ENV HOME /opt/stash-home
 
 RUN apt-get update -y && \
-    apt-get install git
+    apt-get install git -y
 
 RUN mkdir /opt/stash && \
     mkdir /opt/stash-home
