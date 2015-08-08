@@ -1,0 +1,6 @@
+bamboo:
+  build: .
+  ports:
+    - "8085:8085"
+  volumes:
+    - home:/opt/bamboo-home
