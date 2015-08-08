@@ -29,7 +29,7 @@ If you deploy the app for the first time you may need to restore the database fr
 ### Backup
 
     # backup the home folder
-    $ tar xzvf backup/home_2015-05-02.tgz --strip=1 -C home
+    $ tar czf backup/jira-home_$(date +%F).tgz home
 
     # backup the jira database
     $ docker run -it --rm --link atlassianjira_database_1:db \
@@ -39,11 +39,11 @@ If you deploy the app for the first time you may need to restore the database fr
 ### Restore
 
     # unpack a homefolder backup
-    $ cd home && tar xzvf ../backup/home_2015-05-02.tgz
+    $ tar xzvf backup/home_2015-05-02.tgz --strip=1 -C home
 
-    # restore the  database backup
+    # restore the database backup
     $ docker run -it --rm --link atlassianjira_database_1:db \
-      -v $(pwd)/tmp:/tmp postgres sh -c 'pg_restore -U jira \
+        -v $(pwd)/tmp:/tmp postgres sh -c 'pg_restore -U jira \
         -h "$DB_PORT_5432_TCP_ADDR" -n public -w -d jira \
         /tmp/jira.dump'
 

@@ -29,19 +29,19 @@ If you deploy the app for the first time you may need to restore the database fr
 ### Backup
 
     # backup the home folder
-    $ tar xzvf backup/home_2015-05-02.tgz --strip=1 -C home
+    $ tar czf backup/home_$(date +%F).tgz home
 
     # backup the crowd database
     $ docker run -it --rm --link atlassiancrowd_database_1:db \
-      -v $(pwd)/tmp:/tmp postgres sh -c 'pg_dump -U crowd \
+        -v $(pwd)/tmp:/tmp postgres sh -c 'pg_dump -U crowd \
         -h "$DB_PORT_5432_TCP_ADDR" -w crowd > /tmp/crowd.dump'
 
 ### Restore
 
     # unpack a homefolder backup
-    $ cd home && tar xzvf ../backup/home_2015-05-02.tgz
+    $ tar xzvf backup/home_2015-05-02.tgz --strip=1 -C home
 
-    # restore the  database backup
+    # restore the database backup
     $ docker run -it --rm --link atlassiancrowd_database_1:db \
       -v $(pwd)/tmp:/tmp postgres sh -c 'pg_restore -U crowd \
         -h "$DB_PORT_5432_TCP_ADDR" -n public -w -d crowd \

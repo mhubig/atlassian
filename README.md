@@ -1,6 +1,6 @@
 ## Atlassian services
 
-    Version: 1.0.1
+    Version: 1.1.0
 
 This repository holds a dockerized orchestration of the Atlassian web apps
 Jira, Stash and Confluence. To simplify the usermangement Crowd is also
@@ -81,7 +81,7 @@ will pick them up automagically on the first run.
 ### Backup the home folders
 
     $ mkdir -p backup/$(date +%F)
-    $ for i in crowd confluence stash jira; do \
+    $ for i in crowd confluence stash jira bamboo; do \
       tar czf backup/$(date +%F)/$i-home.tgz atlassian-$i/home; done
 
 ### Backup the PostgreSQL data
@@ -109,7 +109,7 @@ will pick them up automagically on the first run.
     # backup the bamboo database
     $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_dump -U bamboo -h "$DB_PORT_5432_TCP_ADDR" \
-        -w crowd > /tmp/bamboo.dump'
+        -w bamboo > /tmp/bamboo.dump'
 
 ### Restore the PostgreSQL data
 
@@ -136,7 +136,7 @@ will pick them up automagically on the first run.
     # restore the bamboo database backup
     $ docker run -it --rm --link atlassian_database_1:db -v $(pwd)/tmp:/tmp \
         postgres sh -c 'pg_restore -U bamboo -h "$DB_PORT_5432_TCP_ADDR" \
-        -n public -w -d crowd /tmp/bamboo.dump'
+        -n public -w -d bamboo /tmp/bamboo.dump'
 
 ---
 [1]: https://www.atlassian.com/software/jira
