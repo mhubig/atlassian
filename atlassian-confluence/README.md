@@ -33,7 +33,7 @@ If you deploy the app for the first time you may need to restore the database fr
 
     # backup the confluence database
     $ docker run -it --rm --link atlassianconfluence_database_1:db \
-      -v $(pwd)/tmp:/tmp postgres sh -c 'pg_dump -U confluence \
+        -v $(pwd)/tmp:/tmp postgres sh -c 'pg_dump -U confluence \
         -h "$DB_PORT_5432_TCP_ADDR" -w confluence > /tmp/confluence.dump'
 
 ### Restore
@@ -41,9 +41,9 @@ If you deploy the app for the first time you may need to restore the database fr
     # unpack a homefolder backup
     $ tar xzvf backup/home_2015-05-02.tgz --strip=1 -C home
 
-    # restore the  database backup
+    # restore the database backup
     $ docker run -it --rm --link atlassianconfluence_database_1:db \
-      -v $(pwd)/tmp:/tmp postgres sh -c 'pg_restore -U confluence \
+        -v $(pwd)/tmp:/tmp postgres sh -c 'pg_restore -U confluence \
         -h "$DB_PORT_5432_TCP_ADDR" -n public -w -d confluence \
         /tmp/confluence.dump'
 
