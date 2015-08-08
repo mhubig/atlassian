@@ -1,0 +1,15 @@
+bamboo:
+  extends:
+    file: bamboo.yml
+    service: bamboo
+  ports:
+    - "80:8085"
+  links:
+    - database
+  volumes:
+    - home:/opt/bamboo-home
+
+database:
+  image: postgres:9.4
+  volumes:
+    - setup-bamboo-db.sh:/docker-entrypoint-initdb.d/setup-bamboo-db.sh
