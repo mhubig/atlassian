@@ -36,7 +36,7 @@ are some examples:
     $ cd atlassian-stash && docker-compose build
 
     # start all the docker images (in development mode)
-    $ docker-compose -f docker-compose-dev.yml dev
+    $ docker-compose -f docker-compose-dev.yml up
 
     # start the stash image (in production mode)
     $ cd atlassian-stash && docker-compose -f docker-compose-dev.yml up
