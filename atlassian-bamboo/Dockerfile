@@ -1,6 +1,6 @@
 FROM relateiq/oracle-java8
 
-ENV bamboo_VERSION 5.9.3
+ENV bamboo_VERSION 5.9.7
 ENV bamboo_HOME /opt/bamboo-home
 ENV HOME /opt/bamboo-home
 
